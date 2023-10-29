@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Quản Lý Công Việc</title>
+</head>
+
+<body>
+    <div class="container mt-5 col-sm-5 pt-3 border">
+        <form id="todoForm">
+            <div class="form-group">
+                <label for="title" class="col-sm-5 font-weight-bold offset-sm-5">TODO LIST</label>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-sm-10 offset-sm-1">
+                    <input type="text" class="form-control" id="addItem" placeholder="Add Item ...">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 offset-sm-1">
+                    <button type="submit" class="btn btn-primary" id="addButton">Add</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 offset-sm-1">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchItem" placeholder="Search ...">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" id="searchButton">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="itemContainer">
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
