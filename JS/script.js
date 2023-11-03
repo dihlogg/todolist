@@ -5,46 +5,74 @@
        const addItemInput = document.getElementById('addItem');
        const searchItemInput = document.getElementById('searchItem');
        const itemContainer = document.getElementById('itemContainer');
+       const incompleteTaskContainer = document.getElementById('incompleteTaskContainer');
+       const completedTaskContainer = document.getElementById('completedTaskContainer');
+
+       console.log(todoForm);
 
        // danh sách task
+
        function displayTasks() {
-           itemContainer.innerHTML = '';
+           incompleteTaskContainer.innerHTML = '';
+           completedTaskContainer.innerHTML = '';
            const searchKeyword = searchItemInput.value.toLowerCase();
 
            tasks.forEach((task, index) => {
                const taskStatusClass = task.completed ? 'completed' : '';
                if (task.task.toLowerCase().includes(searchKeyword)) {
                    const taskItem = document.createElement('div');
-                   taskItem.className = 'col-sm-10 offset-sm-1';
+                   taskItem.className = 'item-class';
+
                    taskItem.innerHTML = `
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control ${taskStatusClass}" value="${task.task}" readonly>
-                            <input type="hidden" class="taskId" value="${index}">
-                            <div class="input-group-append">
-                                <button class="btn btn-danger deleteButton">Delete</button>
-                                <button class="btn btn-primary editButton">Edit</button>
-                            </div>
-                        </div>
-                    `;
-                   itemContainer.appendChild(taskItem);
+                                        <div class="input-group">
+                                            <input type="radio" class="task-status" name="task-status">
+                                            <input type="text" class="form-control ${taskStatusClass}" value="${task.task}" readonly>
+                                            <input type="hidden" class="taskId" value="${index}">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-delete deleteButton">Delete</button>
+                                                <button class="btn btn-edit editButton">Edit</button>
+                                            </div>
+                                        </div>
+                                        `;
+
+                   if (task.completed) {
+                       completedTaskContainer.appendChild(taskItem); // add task completed
+                   } else {
+                       incompleteTaskContainer.appendChild(taskItem); // add task incompleted
+                   }
                }
            });
        }
-
-       // Thêm task
-       todoForm.addEventListener('submit', function(event) {
-           event.preventDefault();
-           const newTask = addItemInput.value.trim();
-           if (newTask) {
-               tasks.push({
-                   task: newTask,
-                   completed: false
-               });
-               localStorage.setItem('tasks', JSON.stringify(tasks));
-               addItemInput.value = '';
+       itemContainer.addEventListener('change', (e) => {
+           if (e.target.classList.contains('task-status')) {
+               const taskItem = e.target.closest('.item-class');
+               const taskId = taskItem.querySelector('.taskId').value;
+               const task = tasks[taskId];
+               task.completed = !task.completed;
                displayTasks();
            }
        });
+
+       // Thêm task
+       const button = document.getElementById('addButton');
+       button.addEventListener('click', showPrompt);
+
+       function showPrompt() {
+           const addItemInput = prompt('Nhap Task');
+           if (addItemInput !== null) {
+               alert('Ban da nhap task:' + addItemInput);
+               tasks.push({
+                   task: addItemInput,
+                   completed: false
+               });
+           } else {
+               alert('Ban da huy bo');
+           }
+           displayTasks();
+           localStorage.setItem('tasks', JSON.stringify(tasks));
+           addItemInput.value = '';
+       }
+       displayTasks();
 
        // Xóa task
        itemContainer.addEventListener('click', function(event) {
@@ -64,14 +92,14 @@
                // form chỉnh sửa task
                const taskItem = event.target.parentElement.parentElement;
                const editForm = document.createElement('div');
-               editForm.className = 'col-sm-10 offset-sm-1';
+               editForm.className = 'item-class';
                editForm.innerHTML = `
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <input type="text" class="form-control" id="editedTaskName" value="${tasks[taskId].task}">
                         <input type="hidden" class="taskId" value="${taskId}">
                         <div class="input-group-append">
-                            <button class="btn btn-success saveButton">Save</button>
-                            <button class="btn btn-danger cancelButton">Cancel</button>
+                            <button class="btn btn-edit saveButton">Save</button>
+                            <button class="btn btn-delete cancelButton">Cancel</button>
                         </div>
                     </div>
                 `;
