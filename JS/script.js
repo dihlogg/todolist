@@ -8,8 +8,6 @@
        const incompleteTaskContainer = document.getElementById('incompleteTaskContainer');
        const completedTaskContainer = document.getElementById('completedTaskContainer');
 
-       console.log(todoForm);
-
        // danh sách task
 
        function displayTasks() {
@@ -23,21 +21,31 @@
                    const taskItem = document.createElement('div');
                    taskItem.className = 'item-class';
 
-                   taskItem.innerHTML = `
-                                        <div class="input-group">
-                                            <input type="radio" class="task-status" name="task-status">
-                                            <input type="text" class="form-control ${taskStatusClass}" value="${task.task}" readonly>
-                                            <input type="hidden" class="taskId" value="${index}">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-delete deleteButton">Delete</button>
-                                                <button class="btn btn-edit editButton">Edit</button>
-                                            </div>
-                                        </div>
-                                        `;
-
                    if (task.completed) {
+                       taskItem.innerHTML = `
+                    <div class="input-group">
+                        <input type="checkbox" checked class="task-status" name="task-status">
+                        <input type="text" class="form-control ${taskStatusClass}" value="${task.task}" readonly>
+                        <input type="hidden" class="taskId" value="${index}">
+                        <div class="input-group-append">
+                            <button class="btn btn-delete deleteButton">Delete</button>
+                            <button class="btn btn-edit editButton">Edit</button>
+                        </div>
+                    </div>
+                    `;
                        completedTaskContainer.appendChild(taskItem); // add task completed
                    } else {
+                       taskItem.innerHTML = `
+                    <div class="input-group">
+                        <input type="checkbox" class="task-status" name="task-status">
+                        <input type="text" class="form-control ${taskStatusClass}" value="${task.task}" readonly>
+                        <input type="hidden" class="taskId" value="${index}">
+                        <div class="input-group-append">
+                            <button class="btn btn-delete deleteButton">Delete</button>
+                            <button class="btn btn-edit editButton">Edit</button>
+                        </div>
+                    </div>
+                    `;
                        incompleteTaskContainer.appendChild(taskItem); // add task incompleted
                    }
                }
@@ -54,11 +62,13 @@
        });
 
        // Thêm task
+
        const button = document.getElementById('addButton');
        button.addEventListener('click', showPrompt);
 
        function showPrompt() {
            const addItemInput = prompt('Nhap Task');
+           console.log(addItemInput);
            if (addItemInput !== null) {
                alert('Ban da nhap task:' + addItemInput);
                tasks.push({
@@ -122,10 +132,6 @@
 
        // search task 
        searchItemInput.addEventListener('input', function() {
-           displayTasks();
-       });
-
-       searchButton.addEventListener('click', function() {
            displayTasks();
        });
 

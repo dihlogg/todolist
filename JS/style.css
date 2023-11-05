@@ -49,6 +49,13 @@ p {
     cursor: pointer;
 }
 
+.btn-primary {
+    text-decoration: none;
+    border: 2px solid #06D85F;
+    padding: 10px;
+    transition: all 0.3s ease-out;
+}
+
 .btn-primary:hover {
     background-color: silver;
 }
