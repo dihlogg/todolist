@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+    padding: 0;
+    /* box-sizing: border-box; */
+    font-family: "Poppins", sans-serif;
+}
+
+.form-control {
+    display: flex;
+}
+
+#content {
+    padding: 5px;
+    height: 45px;
+    width: 400px;
+    resize: none;
+}
+
+.form-control button {
+    height: 57px;
+    width: 80px;
+    line-height: 45px;
+    border: none;
+    padding: 5px;
+    background: #ccc;
+    text-align: center;
+    margin-left: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#list-task {
+    width: 600px;
+}
+
+#list-task h3 {
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+#list-task ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#list-task ul li {
+    display: flex;
+    background: #f1f1f1;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#list-task ul li div {
+    width: 80%;
+}
+
+#list-task ul li a {
+    text-decoration: none;
+    display: block;
+    margin-right: 10px;
+    color: #333;
+    padding: 5px;
+    justify-content: space-around;
+    font-weight: 500;
+}
+
+#list-task ul li a:nth-of-type(2) {
+    /* quy định thẻ <a> ở vị trí số 2 */
+    background: red;
+    border-radius: 5px;
+}
+
+.task-name {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+#myCheckbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    appearance: none;
+    margin-right: 10px;
+    &:checked {
+        background-color: blue;
+        clip-path: polygon(28% 38%, 41% 53%, 75% 24%, 86% 38%, 40% 78%, 15% 50%);
+        /* border: 2px solid white; */
+        transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
+    }
+}
+
+.tabs {
+    display: flex;
+    position: relative;
+}
+
+.tab-item {
+    min-width: 80px;
+    padding: 16px 20px 11px 20px;
+    font-size: 20px;
+    text-align: center;
+    color: #c23564;
+    background-color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 5px solid transparent;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.tab-item:hover {
+    opacity: 1;
+    background-color: rgba(194, 53, 100, 0.05);
+    border-color: rgba(194, 53, 100, 0.1);
+}
+
+.tab-item.active {
+    opacity: 1;
+}
+
+.tab-content {
+    padding: 28px 0;
+}
+
+.tab-pane {
+    color: #333;
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
