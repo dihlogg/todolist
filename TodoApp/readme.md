@@ -5,4 +5,4 @@
 5. DOM
 ![dom drawio](https://github.com/dihlogg/todolist/assets/122029360/7b07c828-089a-42b1-a894-bac698dfaa13)
 6. BOM
-![bom drawio](https://github.com/dihlogg/todolist/assets/122029360/ae45747d-600c-4da2-9c91-5d92aecdb1dc)
+![bom drawio](https://github.com/dihlogg/todolist/assets/122029360/dabd77c6-a264-48e9-88d0-67393a138b78)
