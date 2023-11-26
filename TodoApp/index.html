@@ -2,35 +2,48 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo App</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToDo App</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="form-control">
-            <textarea id="content" class="content" placeholder="Add Task Name"></textarea>
-            <button>Add Task</button>
+  <div class="container">
+    <div class="form-control">
+      <button id="addTask">Add Task</button>
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <span class="close-popup" onclick="closePopup()">&times;</span>
+          <label for="taskInput">Task:</label>
+          <input type="text" id="taskInput" placeholder="Enter your task" />
+          <label for="startDate">Date:</label>
+          <input type="date" id="startDate" />
+          <button id="saveTask">Save Task</button>
         </div>
-        <div id="list-task">
-            <h3>List Task</h3>
-            <div id="result">
-                <p>No Task Yet</p>
-            </div>
-        </div>
-        <!-- Tab Item  -->
-        <div class="tabs">
-            <div class="tab-item active">Uncompleted-tasks</div>
-            <div class="tab-item">Completed-tasks</div>
-        </div>
-        <!-- Tab Content  -->
-        <div class="tab-pane active">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, consequuntur tempore sequi aut sit nam eos? Molestias repellat sint eveniet.</div>
-        <div class="tab-pane">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat in expedita consequatur quas, vitae mollitia accusantium sint nihil quasi explicabo veritatis labore laboriosam, voluptate eaque dolores corporis facere ex?</div>
-
-        <script src="app.js"></script>
+      </div>
     </div>
+    <div id="list-task">
+      <h3>List Task</h3>
+    </div>
+    <!-- Tab Item  -->
+    <div class="tabs">
+      <div class="tab-item active" onclick="changeTab('uncompleted-tasks')">Uncompleted-tasks</div>
+      <div class="tab-item" onclick="changeTab('completed-tasks')">Completed-tasks</div>
+    </div>
+    <!-- Tab Content  -->
+    <div class="tab-content">
+      <div class="tab-pane active">
+        <div class="uncompleted-tasks"></div>
+      </div>
+      <div class="tab-pane">
+        <div class="completed-tasks">
+          <ul></ul>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </div>
 </body>
 
 </html>
