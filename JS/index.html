@@ -12,11 +12,18 @@
     <div class="container">
         <form action id="todoForm">
             <div class="form-group">
-                <label for class="title">ToDo List</label>
+                <label class="title">ToDo List</label>
             </div>
             <hr>
             <div class="form-group">
                 <button class="btn btn-primary" id="addButton" type="submit">Add</button>
+                <div id="taskModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="closeModal">&times;</span>
+                        <input type="text" id="taskInput" placeholder="Nhập task...">
+                        <button id="addTaskButton">Thêm</button>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <div class="input-group">

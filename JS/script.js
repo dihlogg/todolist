@@ -1,15 +1,24 @@
        // Lấy dl Local Storage
        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
        const todoForm = document.getElementById('todoForm');
-       const addItemInput = document.getElementById('addItem');
+       //    const addItemInput = document.getElementById('addItem');
        const searchItemInput = document.getElementById('searchItem');
        const itemContainer = document.getElementById('itemContainer');
        const incompleteTaskContainer = document.getElementById('incompleteTaskContainer');
        const completedTaskContainer = document.getElementById('completedTaskContainer');
+       const taskModal = document.getElementById('taskModal');
+       const taskInput = document.getElementById('taskInput');
+       const addTaskButton = document.getElementById('addTaskButton');
+       const closeModal = document.getElementById('closeModal');
 
+       addTaskButton.addEventListener('click', () => {
+           taskModal.style.display = 'block'; // Hiển thị popup khi người dùng nhấn nút "Add"
+       });
+
+       closeModal.addEventListener('click', () => {
+           taskModal.style.display = 'none'; // Ẩn popup khi người dùng nhấn nút đóng
+       });
        // danh sách task
-
        function displayTasks() {
            incompleteTaskContainer.innerHTML = '';
            completedTaskContainer.innerHTML = '';
@@ -20,9 +29,7 @@
                if (task.task.toLowerCase().includes(searchKeyword)) {
                    const taskItem = document.createElement('div');
                    taskItem.className = 'item-class';
-
-                   if (task.completed) {
-                       taskItem.innerHTML = `
+                   taskItem.innerHTML = `
                     <div class="input-group">
                         <input type="checkbox" checked class="task-status" name="task-status">
                         <input type="text" class="form-control ${taskStatusClass}" value="${task.task}" readonly>
@@ -33,19 +40,11 @@
                         </div>
                     </div>
                     `;
+
+                   if (task.completed) {
+
                        completedTaskContainer.appendChild(taskItem); // add task completed
                    } else {
-                       taskItem.innerHTML = `
-                    <div class="input-group">
-                        <input type="checkbox" class="task-status" name="task-status">
-                        <input type="text" class="form-control ${taskStatusClass}" value="${task.task}" readonly>
-                        <input type="hidden" class="taskId" value="${index}">
-                        <div class="input-group-append">
-                            <button class="btn btn-delete deleteButton">Delete</button>
-                            <button class="btn btn-edit editButton">Edit</button>
-                        </div>
-                    </div>
-                    `;
                        incompleteTaskContainer.appendChild(taskItem); // add task incompleted
                    }
                }
@@ -60,30 +59,78 @@
                displayTasks();
            }
        });
+       addTaskButton.addEventListener('click', () => {
+           const newTask = taskInput.value;
+           if (newTask.trim() !== '') {
+               tasks.push({
+                   task: newTask,
+                   completed: false
+               });
+               localStorage.setItem('tasks', JSON.stringify(tasks));
+               displayTasks();
+               taskInput.value = '';
+               closeModal.click(); // Đóng modal sau khi thêm task
+           }
+       });
+       addTaskButton.addEventListener('click', () => {
+           taskModal.style.display = 'block'; // Hiển thị popup khi người dùng nhấn nút "Add"
+       });
+
+       closeModal.addEventListener('click', () => {
+           taskModal.style.display = 'none'; // Ẩn popup khi người dùng nhấn nút đóng
+       });
+
+       addTaskButton.addEventListener('click', () => {
+           const newTask = taskInput.value;
+           if (newTask.trim() !== '') {
+               tasks.push({
+                   task: newTask,
+                   completed: false
+               });
+               localStorage.setItem('tasks', JSON.stringify(tasks));
+               displayTasks();
+               taskInput.value = '';
+               taskModal.style.display = 'none'; // Đóng modal sau khi thêm task
+           }
+       });
+
+       // ... (không thay đổi phần này)
+
+       // Xử lý sự kiện tìm kiếm
+       searchItemInput.addEventListener('input', () => {
+           displayTasks();
+       });
+
+       displayTasks();
+
+
+       displayTasks();
 
        // Thêm task
 
-       const button = document.getElementById('addButton');
-       button.addEventListener('click', showPrompt);
+       const addButton = document.getElementById('addButton');
+       addButton.addEventListener('click', () => {
+           taskModal.style.display = 'block';
+       });
 
-       function showPrompt() {
-           const addItemInput = prompt('Nhap Task');
-           console.log(addItemInput);
-           if (addItemInput !== null) {
-               alert('Ban da nhap task:' + addItemInput);
-               tasks.push({
-                   task: addItemInput,
-                   completed: false
-               });
-           } else {
-               alert('Ban da huy bo');
+       // Đóng modal khi bấm vào nút đóng
+       closeModal.addEventListener('click', () => {
+           taskModal.style.display = 'none';
+       });
+
+       // Đóng modal khi bấm nút ngoài modal
+       window.addEventListener('click', (event) => {
+           if (event.target == taskModal) {
+               taskModal.style.display = 'none';
            }
-           displayTasks();
-           localStorage.setItem('tasks', JSON.stringify(tasks));
-           addItemInput.value = '';
-       }
-       displayTasks();
+       });
 
+       // Xử lý sự kiện tìm kiếm
+       searchItemInput.addEventListener('input', () => {
+           displayTasks();
+       });
+
+       displayTasks();
        // Xóa task
        itemContainer.addEventListener('click', function(event) {
            if (event.target.classList.contains('deleteButton')) {

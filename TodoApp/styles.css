@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 * {
     padding: 0;
     font-family: "Poppins", sans-serif;
@@ -22,11 +23,13 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     background: white;
 }
+
 .popup label {
     font-size: 24px;
     margin-right: 10px;
     margin-left: 40px;
 }
+
 .popup input {
     border: 2px solid #333;
     width: 250px;
@@ -34,9 +37,11 @@
     border-radius: 5px;
     text-align: center;
 }
+
 #startDate {
     margin-top: 20px;
 }
+
 #saveTask {
     display: flex;
     justify-content: center;
@@ -64,9 +69,11 @@
     font-size: 30px;
     opacity: 0.6;
 }
+
 .popup.active {
     display: block;
 }
+
 .start-date {
     font-size: 18px;
     padding: 5px;
@@ -105,6 +112,7 @@
     appearance: none;
     margin-right: 10px;
     margin-top: 5px;
+
     &:checked {
         background-color: blue;
         clip-path: polygon(28% 38%, 41% 53%, 75% 24%, 86% 38%, 40% 78%, 15% 50%);
@@ -155,6 +163,7 @@
 .tab-pane.active {
     display: block;
 }
+
 .tab-pane ul {
     list-style-type: none;
     margin: 0px;
@@ -182,11 +191,20 @@
     font-weight: 500;
 }
 
-.tab-pane ul li a:nth-of-type(1) {
-    /* quy định thẻ <a> ở vị trí số 1 */
+.tab-pane ul li a:nth-of-type(2) {
+    /* quy định thẻ <a> ở vị trí số 2 */
     background: red;
     border-radius: 5px;
 }
+
+.tab-pane ul li a:nth-of-type(1) {
+    /* quy định thẻ <a> ở vị trí số 1 */
+    background: green;
+    border-radius: 5px;
+    width: 50px;
+    text-align: center;
+}
+
 .hidden {
     display: none;
 }
